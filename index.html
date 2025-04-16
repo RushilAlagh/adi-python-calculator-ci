@@ -1,114 +1,77 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Interactive Calculator</title>
-    <style>
-      body {
-        font-family: Arial, sans-serif;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100vh;
-        background: #f4f4f4;
-      }
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Contact Us</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 2rem;
+      background-color: #f9f9f9;
+    }
+    .form-container {
+      max-width: 500px;
+      margin: auto;
+      background: white;
+      padding: 2rem;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: bold;
+    }
+    input, textarea, button {
+      width: 100%;
+      padding: 0.8rem;
+      margin-bottom: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+    #success-message {
+      display: none;
+      color: green;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
 
-      #calculator {
-        background: #fff;
-        padding: 20px;
-        border-radius: 10px;
-        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-      }
+  <div class="form-container">
+    <h2>Contact Us</h2>
+    <form id="contact-form">
+      <label for="name">Name</label>
+      <input type="text" id="name" required />
 
-      #userInput {
-        width: 100%;
-        padding: 10px;
-        font-size: 22px;
-        margin-bottom: 10px;
-        text-align: right;
-        border: 1px solid #ccc;
-        border-radius: 5px;
-      }
+      <label for="email">Email</label>
+      <input type="email" id="email" required />
 
-      .buttons {
-        display: grid;
-        grid-template-columns: repeat(4, 60px);
-        gap: 10px;
-        justify-content: center;
-      }
+      <label for="message">Message</label>
+      <textarea id="message" rows="5" required></textarea>
 
-      .btn {
-        padding: 15px;
-        font-size: 18px;
-        border: none;
-        border-radius: 5px;
-        background-color: #e0e0e0;
-        cursor: pointer;
-        transition: background-color 0.2s;
-      }
+      <button type="submit">Submit</button>
+      <div id="success-message">Thank you! Your message has been sent.</div>
+    </form>
+  </div>
 
-      .btn:hover {
-        background-color: #d0d0d0;
-      }
+  <script>
+    const form = document.getElementById('contact-form');
+    const successMessage = document.getElementById('success-message');
 
-      .btn.equals {
-        background-color: #4caf50;
-        color: white;
-      }
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
 
-      .btn.clear {
-        background-color: #f44336;
-        color: white;
-      }
-    </style>
-  </head>
-  <body>
-    <div id="calculator">
-      <input type="text" id="userInput" placeholder="0" />
-      <div class="buttons">
-        <button class="btn" onclick="append('7')">7</button>
-        <button class="btn" onclick="append('8')">8</button>
-        <button class="btn" onclick="append('9')">9</button>
-        <button class="btn" onclick="append('/')">/</button>
+      // Simulate successful form submission
+      successMessage.style.display = 'block';
 
-        <button class="btn" onclick="append('4')">4</button>
-        <button class="btn" onclick="append('5')">5</button>
-        <button class="btn" onclick="append('6')">6</button>
-        <button class="btn" onclick="append('*')">*</button>
+      // Reset form after a delay (optional)
+      setTimeout(() => {
+        form.reset();
+      }, 2000);
+    });
+  </script>
 
-        <button class="btn" onclick="append('1')">1</button>
-        <button class="btn" onclick="append('2')">2</button>
-        <button class="btn" onclick="append('3')">3</button>
-        <button class="btn" onclick="append('-')">-</button>
-
-        <button class="btn" onclick="append('0')">0</button>
-        <button class="btn" onclick="append('.')">.</button>
-        <button class="btn equals" onclick="calculate()">=</button>
-        <button class="btn" onclick="append('+')">+</button>
-
-        <button class="btn clear" onclick="clearInput()">C</button>
-      </div>
-    </div>
-
-    <script>
-      const input = document.getElementById("userInput");
-
-      function append(value) {
-        input.value += value;
-      }
-
-      function clearInput() {
-        input.value = "";
-      }
-
-      function calculate() {
-        try {
-          input.value = eval(input.value);
-        } catch {
-          input.value = "Error";
-        }
-      }
-    </script>
-  </body>
+</body>
 </html>
